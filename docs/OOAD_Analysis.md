@@ -7,7 +7,7 @@
 
 ---
 
-## 📋 MỤC LỤC
+##  MỤC LỤC
 
 1. [Tổng quan Hệ thống](#1-tổng-quan-hệ-thống)
 2. [Đánh giá Database Schema](#2-đánh-giá-database-schema)
@@ -75,9 +75,9 @@
 
 ## 2. ĐÁNH GIÁ DATABASE SCHEMA
 
-### 2.1. Đánh giá Tổng quan ⭐⭐⭐⭐⭐ (5/5)
+### 2.1. Đánh giá Tổng quan  (5/5)
 
-**✅ ĐIỂM MẠNH:**
+**ĐIỂM MẠNH:**
 
 1. **Cấu trúc Logic và Nhất quán**
    - Áp dụng đúng nguyên tắc chuẩn hóa (3NF)
@@ -101,7 +101,7 @@
    - is_active flags cho soft delete
    - Role-based access control
 
-**❌ ĐIỂM CẦN CẢI TIẾN (Minor):**
+**ĐIỂM CẦN CẢI TIẾN (Minor):**
 
 1. **Thiếu một số bảng phụ:**
    - **Chat_Conversations:** Để quản lý danh sách cuộc hội thoại (hiện chỉ có Messages)
@@ -116,31 +116,31 @@
    - Thiếu composite indexes cho các query phức tạp
    - VD: `(project_id, status, created_at)` cho Material_Requests
 
-### 2.2. Phù hợp với Frontend ⭐⭐⭐⭐⭐ (5/5)
+### 2.2. Phù hợp với Frontend (5/5)
 
 **So sánh chi tiết Frontend Features ↔ Database Tables:**
 
 | Frontend Feature | Database Tables | Status |
 |-----------------|----------------|--------|
-| **Login & Authentication** | Users, User_Profiles, Activity_Logs | ✅ Đầy đủ |
-| **Admin Dashboard** | Projects, Users, Activity_Logs | ✅ Đầy đủ |
-| **Admin Staff Management** | Users, User_Profiles | ✅ Đầy đủ |
-| **Admin Projects** | Projects, Project_Team, Work_Items | ✅ Đầy đủ |
-| **PM Dashboard** | Projects, Work_Items, Progress_Updates, Material_Requests | ✅ Đầy đủ |
-| **PM Project Create** | Projects, Work_Items, Project_Team, Budget_Breakdown | ✅ Đầy đủ |
-| **PM Materials** | Materials, Material_Requests, Material_Request_Items, Material_Usage | ✅ Đầy đủ |
-| **PM Reports** | Projects, Expenses, Budget_Breakdown, Progress_Updates | ✅ Đầy đủ |
-| **PM Calendar** | Calendar_Events | ✅ Đầy đủ |
-| **PM Notifications** | Notifications | ✅ Đầy đủ |
-| **Foreman Dashboard** | Projects, Work_Items, Progress_Updates | ✅ Đầy đủ |
-| **Foreman Update Progress** | Progress_Updates, Work_Items (checklist) | ✅ Đầy đủ |
-| **Foreman Material Request** | Material_Requests, Material_Request_Items | ✅ Đầy đủ |
-| **Foreman Chat** | Messages | ⚠️ Cần thêm Conversations table |
-| **Client Dashboard** | Projects, Progress_Updates | ✅ Đầy đủ |
-| **Client Progress** | Work_Items, Progress_Updates | ✅ Đầy đủ |
-| **Client Budget** | Budget_Breakdown, Expenses | ✅ Đầy đủ |
-| **Client Messages** | Messages, Feedbacks | ✅ Đầy đủ |
-| **Client Documents** | Documents | ✅ Đầy đủ |
+| **Login & Authentication** | Users, User_Profiles, Activity_Logs | Đầy đủ |
+| **Admin Dashboard** | Projects, Users, Activity_Logs |  Đầy đủ |
+| **Admin Staff Management** | Users, User_Profiles | Đầy đủ |
+| **Admin Projects** | Projects, Project_Team, Work_Items | Đầy đủ |
+| **PM Dashboard** | Projects, Work_Items, Progress_Updates, Material_Requests |  Đầy đủ |
+| **PM Project Create** | Projects, Work_Items, Project_Team, Budget_Breakdown |  Đầy đủ |
+| **PM Materials** | Materials, Material_Requests, Material_Request_Items, Material_Usage |  Đầy đủ |
+| **PM Reports** | Projects, Expenses, Budget_Breakdown, Progress_Updates |  Đầy đủ |
+| **PM Calendar** | Calendar_Events |  Đầy đủ |
+| **PM Notifications** | Notifications |  Đầy đủ |
+| **Foreman Dashboard** | Projects, Work_Items, Progress_Updates |  Đầy đủ |
+| **Foreman Update Progress** | Progress_Updates, Work_Items (checklist) |  Đầy đủ |
+| **Foreman Material Request** | Material_Requests, Material_Request_Items |  Đầy đủ |
+| **Foreman Chat** | Messages |  Cần thêm Conversations table |
+| **Client Dashboard** | Projects, Progress_Updates |  Đầy đủ |
+| **Client Progress** | Work_Items, Progress_Updates |  Đầy đủ |
+| **Client Budget** | Budget_Breakdown, Expenses |  Đầy đủ |
+| **Client Messages** | Messages, Feedbacks |  Đầy đủ |
+| **Client Documents** | Documents |  Đầy đủ |
 
 **Kết luận:** Database schema phù hợp **95%** với frontend hiện tại.
 
@@ -525,13 +525,13 @@ class Notification {
 **Rule 1: Class → Table**
 ```
 Mỗi Class → 1 Table tương ứng
-✅ 24 Classes → 24 Tables trong database
+24 Classes → 24 Tables trong database
 ```
 
 **Rule 2: Attribute → Column**
 ```
 Mỗi thuộc tính → 1 cột với kiểu dữ liệu phù hợp
-✅ Ví dụ:
+Ví dụ:
   - email: string → NVARCHAR(255)
   - progress: number → INT (0-100)
   - created_at: datetime → DATETIME
@@ -542,7 +542,7 @@ Mỗi thuộc tính → 1 cột với kiểu dữ liệu phù hợp
 **Rule 3: Relationship 1:n → Foreign Key**
 ```
 Thêm FK ở bên "nhiều" (child table)
-✅ Ví dụ:
+ Ví dụ:
   - Projects.pm_id → FOREIGN KEY REFERENCES Users(user_id)
   - Work_Items.project_id → FOREIGN KEY REFERENCES Projects(project_id)
   - Progress_Updates.work_item_id → FOREIGN KEY REFERENCES Work_Items(work_item_id)
@@ -552,7 +552,7 @@ Thêm FK ở bên "nhiều" (child table)
 **Rule 4: Relationship m:n → Junction Table**
 ```
 Tạo bảng trung gian chứa 2 FK + thuộc tính bổ sung
-✅ Ví dụ:
+ Ví dụ:
   - Project m:n User → Project_Team
     + project_id (FK to Projects)
     + user_id (FK to Users)
@@ -579,19 +579,19 @@ Tạo bảng trung gian chứa 2 FK + thuộc tính bổ sung
 
 #### 3.3.3. Kiểm tra Tính nhất quán
 
-**✅ Kiểm tra 1: Mọi Class đều có Table tương ứng**
+**Kiểm tra 1: Mọi Class đều có Table tương ứng**
 ```
 24 Classes → 24 Tables ✓
 ```
 
-**✅ Kiểm tra 2: Mọi Relationship đều được implement**
+**Kiểm tra 2: Mọi Relationship đều được implement**
 ```
 - 1:1 relationships: User ↔ UserProfile ✓
 - 1:n relationships: 15 relationships với FK ✓
 - m:n relationships: Project ↔ User through Project_Team ✓
 ```
 
-**✅ Kiểm tra 3: Mọi Business Rule đều được enforce**
+**Kiểm tra 3: Mọi Business Rule đều được enforce**
 ```
 - CHECK constraints cho enums (role, status, priority) ✓
 - DEFAULT values (created_at, is_active) ✓
@@ -599,7 +599,7 @@ Tạo bảng trung gian chứa 2 FK + thuộc tính bổ sung
 - UNIQUE constraints (email, material_code, project_code) ✓
 ```
 
-**✅ Kiểm tra 4: Indexes cho Performance**
+**Kiểm tra 4: Indexes cho Performance**
 ```
 - Primary Keys (tự động indexed) ✓
 - Foreign Keys (indexed) ✓
@@ -616,9 +616,9 @@ Tạo bảng trung gian chứa 2 FK + thuộc tính bổ sung
 
 | Frontend | Method | Endpoint | Database Tables | Status |
 |----------|--------|----------|----------------|--------|
-| Login.vue | POST | `/api/auth/login` | Users | ⏳ To build |
-| Login.vue | POST | `/api/auth/logout` | Users (update last_login) | ⏳ To build |
-| Login.vue | POST | `/api/auth/refresh` | Users (refresh_token) | ⏳ To build |
+| Login.vue | POST | `/api/auth/login` | Users |  To build |
+| Login.vue | POST | `/api/auth/logout` | Users (update last_login) |  To build |
+| Login.vue | POST | `/api/auth/refresh` | Users (refresh_token) |  To build |
 
 #### 4.1.2. Admin Module (6 pages)
 
@@ -736,7 +736,7 @@ onMounted(() => {
 
 ### 5.1. Cải tiến Database Schema (Priority: Medium)
 
-#### 5.1.1. Thêm bảng Chat_Conversations ⭐⭐⭐
+#### 5.1.1. Thêm bảng Chat_Conversations 
 
 **Lý do:** Hiện tại Messages chỉ lưu tin nhắn đơn lẻ. Cần bảng Conversations để:
 - Nhóm tin nhắn thành cuộc hội thoại
@@ -773,7 +773,7 @@ ADD conversation_id INT,
 FOREIGN KEY (conversation_id) REFERENCES Chat_Conversations(conversation_id);
 ```
 
-#### 5.1.2. Thêm bảng Project_Status_History ⭐⭐
+#### 5.1.2. Thêm bảng Project_Status_History 
 
 **Lý do:** Theo dõi lịch sử thay đổi trạng thái dự án (PLANNING → IN_PROGRESS → COMPLETED)
 
@@ -793,7 +793,7 @@ CREATE TABLE Project_Status_History (
 );
 ```
 
-#### 5.1.3. Thêm Composite Indexes ⭐⭐⭐
+#### 5.1.3. Thêm Composite Indexes 
 
 **Tối ưu query phổ biến:**
 
@@ -815,7 +815,7 @@ CREATE INDEX idx_messages_sender_receiver
 ON Messages(sender_id, receiver_id, created_at DESC);
 ```
 
-#### 5.1.4. Thêm Triggers tự động tính toán ⭐⭐
+#### 5.1.4. Thêm Triggers tự động tính toán 
 
 **Trigger 1: Auto-calculate overall_progress**
 ```sql
@@ -1015,13 +1015,13 @@ app.post('/api/projects', async (req, res) => {
 #### 5.3.2. SQL Injection Prevention
 
 ```javascript
-// ✅ ĐÚNG: Sử dụng parameterized queries
+//  ĐÚNG: Sử dụng parameterized queries
 const users = await db.query(
   'SELECT * FROM Users WHERE email = @email',
   { email: req.body.email }
 );
 
-// ❌ SAI: String concatenation
+//  SAI: String concatenation
 const users = await db.query(
   `SELECT * FROM Users WHERE email = '${req.body.email}'`
 );
@@ -1063,18 +1063,18 @@ app.use('/api/', limiter);
 
 ### 6.1. Tóm tắt Đánh giá
 
-**Database Schema: ⭐⭐⭐⭐⭐ (5/5)**
+**Database Schema:  (5/5)**
 - Thiết kế logic, chuẩn hóa tốt
 - Áp dụng đúng nguyên tắc OOAD
 - Hỗ trợ đầy đủ chức năng nghiệp vụ
 - Sẵn sàng cho production với một số điều chỉnh nhỏ
 
-**OOAD Application: ⭐⭐⭐⭐⭐ (5/5)**
+**OOAD Application:  (5/5)**
 - Truy vết Danh từ: 24 Classes xác định rõ ràng
 - Truy vết Động từ: Methods phân bổ hợp lý theo encapsulation
 - Mapping: 100% Classes có Table tương ứng, relationships đầy đủ
 
-**Frontend-Backend Alignment: ⭐⭐⭐⭐☆ (4.5/5)**
+**Frontend-Backend Alignment:  (4.5/5)**
 - 95% features frontend có support từ database
 - Cần thêm Chat_Conversations table
 - Mock data đã chuẩn bị sẵn cho migration
@@ -1133,7 +1133,7 @@ Hệ thống **Interior Project Management** đã được thiết kế một c�
 
 Frontend với 25 pages cho 4 roles đã **sẵn sàng** để tích hợp với Backend API. Chỉ cần thêm một vài cải tiến nhỏ (Chat_Conversations, composite indexes, triggers), hệ thống có thể **đi vào production ngay lập tức**.
 
-**Đánh giá tổng thể: ⭐⭐⭐⭐⭐ XUẤT SẮC**
+**Đánh giá tổng thể:  XUẤT SẮC**
 
 ---
 
