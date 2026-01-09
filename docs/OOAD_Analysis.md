@@ -157,14 +157,40 @@
 
 #### 3.1.1. Danh từ được xác định
 
-```
-Người dùng, Admin, Quản lý dự án (PM), Tổ trưởng (Foreman), 
-Khách hàng (Client), Dự án, Hạng mục công việc, Danh mục thi công, 
-Vật tư, Kho, Tiến độ, Cập nhật, Yêu cầu vật tư, Chi phí, 
-Thanh toán, Đợt thanh toán, Tin nhắn, Thông báo, Tài liệu, 
-Lịch sự kiện, Lịch sử hoạt động, Email, Template, Giao dịch kho, 
-Đơn vị tính
-```
+| Danh từ (Trong văn bản) | Phân loại | Giải thích / Ánh xạ |
+|-------------------------|-----------|---------------------|
+| **Người dùng (User)** | Entity | Thực thể cha quản lý thông tin đăng nhập, vai trò. → Table **Users** |
+| Admin | Role / User | Là một loại người dùng với Role='ADMIN'. Quản trị hệ thống. |
+| PM (Quản lý dự án) | Role / User | Là một loại người dùng với Role='PM'. Quản lý và điều phối dự án. |
+| Foreman (Tổ trưởng) | Role / User | Là một loại người dùng với Role='FOREMAN'. Giám sát thi công tại hiện trường. |
+| Client (Khách hàng) | Role / User | Là một loại người dùng với Role='CLIENT'. Chủ dự án theo dõi tiến độ. |
+| **Dự án (Project)** | Entity | Đối tượng dự án thi công nội thất. → Table **Projects** |
+| **Hạng mục công việc** | Entity | Đối tượng công việc thuộc dự án (Điện, Nước, Gỗ...). → Table **Work_Items** |
+| **Danh mục thi công** | Entity | Đối tượng phân loại hạng mục (Category). → Table **Work_Categories** |
+| **Vật tư (Material)** | Entity | Đối tượng vật liệu xây dựng/nội thất. → Table **Materials** |
+| Kho | Concept/System | Khái niệm quản lý vật tư, được track qua Inventory_Transactions. Không phải entity độc lập. |
+| Tiến độ | Attribute | Thuộc tính của Work_Items (progress_percentage: INT 0-100%). |
+| **Cập nhật (Progress Update)** | Entity | Đối tượng cập nhật tiến độ bởi Foreman. → Table **Progress_Updates** |
+| **Yêu cầu vật tư** | Entity | Đối tượng yêu cầu vật tư từ Foreman. → Table **Material_Requests** |
+| **Chi tiết yêu cầu vật tư** | Entity | Đối tượng trung gian (Material_Request - Material). → Table **Material_Request_Items** |
+| **Sử dụng vật tư** | Entity | Đối tượng ghi nhận vật tư đã dùng. → Table **Material_Usage** |
+| **Chi phí (Expense)** | Entity | Đối tượng chi phí phát sinh trong dự án. → Table **Expenses** |
+| **Phân bổ ngân sách** | Entity | Đối tượng chi tiết ngân sách theo hạng mục. → Table **Budget_Breakdown** |
+| Thanh toán | Concept | Khái niệm thanh toán, liên quan đến Payment_Schedule. |
+| **Đợt thanh toán** | Entity | Đối tượng đợt thanh toán theo giai đoạn. → Table **Payment_Schedule** |
+| **Tin nhắn (Message)** | Entity | Đối tượng tin nhắn giữa users. → Table **Messages** |
+| **Thông báo (Notification)** | Entity | Đối tượng thông báo hệ thống. → Table **Notifications** |
+| **Feedback** | Entity | Đối tượng đánh giá của Client. → Table **Feedbacks** |
+| **Tài liệu (Document)** | Entity | Đối tượng tài liệu dự án (hợp đồng, thiết kế...). → Table **Documents** |
+| **Lịch sự kiện** | Entity | Đối tượng sự kiện/cuộc họp trong lịch. → Table **Calendar_Events** |
+| **Lịch sử hoạt động** | Entity | Đối tượng ghi nhật ký hệ thống. → Table **Activity_Logs** |
+| Email | Concept | Khái niệm gửi email thông báo. Không lưu trực tiếp trong database. |
+| **Template Email** | Entity | Đối tượng mẫu email tự động. → Table **Email_Templates** |
+| **Giao dịch kho** | Entity | Đối tượng giao dịch nhập/xuất vật tư. → Table **Inventory_Transactions** |
+| **Đơn vị tính (Unit)** | Entity | Đối tượng đơn vị (kg, m², cái...). → Table **Units** |
+| **Đội ngũ dự án** | Entity | Đối tượng trung gian (Project - User với role). → Table **Project_Team** |
+| **Profile người dùng** | Entity | Đối tượng chi tiết profile theo role. → Table **User_Profiles** |
+| **Cấu hình hệ thống** | Entity | Đối tượng setting động. → Table **System_Settings** |
 
 #### 3.1.2. Phân loại Lớp (Classes) - 24 Classes
 
